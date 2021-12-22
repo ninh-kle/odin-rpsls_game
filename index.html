@@ -8,9 +8,6 @@
     <title>Document</title>
 </head>
 <script>
-    let wins = 0;
-    let loses = 0;
-
     let playerSelection = prompt("Please select one of the following: 'Rock', 'Paper', 'Scissors', 'Lizard', or 'Spock'");
 
     let oppSelection = Math.floor(Math.random() * 100) + 1;
@@ -25,8 +22,24 @@
     } else {
         oppSelection = "spock"
     }
-    console.log(oppSelection)
 
+    if (playerSelection.toLowerCase() === "rock" && oppSelection === ("scissors" || "lizard")) {
+        console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
+    } else if (playerSelection.toLowerCase() === "rock" && oppSelection === ("paper" || "spock")) {
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`)
+    }
+
+    if (playerSelection.toLowerCase() === "paper" && oppSelection === ("rock" || "spock")) {
+        console.log(`You win, ${playerSelection} beats ${oppSelection}!`)
+    } else if (playerSelection === "paper" && oppSelection === ("scissors" || "lizard")) {
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`)
+    }
+
+    if (playerSelection === "scissors" && oppSelection === ("paper" || "lizard")) {
+        console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
+    } else if (playerSelection === "scissors" && oppSelection === ("rock" || "spock")) {
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`)
+    }
 </script>
 
 <body>
