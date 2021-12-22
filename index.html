@@ -26,19 +26,31 @@
     if (playerSelection.toLowerCase() === "rock" && oppSelection === ("scissors" || "lizard")) {
         console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
     } else if (playerSelection.toLowerCase() === "rock" && oppSelection === ("paper" || "spock")) {
-        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`)
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
     }
 
     if (playerSelection.toLowerCase() === "paper" && oppSelection === ("rock" || "spock")) {
         console.log(`You win, ${playerSelection} beats ${oppSelection}!`)
-    } else if (playerSelection === "paper" && oppSelection === ("scissors" || "lizard")) {
-        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`)
+    } else if (playerSelection.toLowerCase() === "paper" && oppSelection === ("scissors" || "lizard")) {
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
     }
 
-    if (playerSelection === "scissors" && oppSelection === ("paper" || "lizard")) {
+    if (playerSelection.toLowerCase() === "scissors" && oppSelection === ("paper" || "lizard")) {
         console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
-    } else if (playerSelection === "scissors" && oppSelection === ("rock" || "spock")) {
-        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`)
+    } else if (playerSelection.toLowerCase() === "scissors" && oppSelection === ("rock" || "spock")) {
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
+    }
+
+    if (playerSelection.toLowerCase() === "lizard" && oppSelection === ("paper" || "spock")) {
+        console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
+    } else if (playerSelection.toLowerCase() === "lizard" && oppSelection === ("scissors" || "rock")) {
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
+    }
+
+    if (playerSelection.toLowerCase() === "spock" && oppSelection === ("scissors" || "rock")) {
+        console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
+    } else if (playerSelection.toLowerCase() === "spock" && oppSelection === ("paper" || "lizard")) {
+        console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
     }
 </script>
 
