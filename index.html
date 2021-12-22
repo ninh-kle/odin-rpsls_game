@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let wins = 0;
+    let loses = 0;
+
+    let playerSelection = prompt("Please select one of the following: 'Rock', 'Paper', 'Scissors', 'Lizard', or 'Spock'");
+
+    let oppSelection = Math.floor(Math.random() * 100) + 1;
+    if (oppSelection >= 80) {
+        oppSelection = "rock";
+    } else if (oppSelection >= 60) {
+        oppSelection = "paper"
+    } else if (oppSelection >= 40) {
+        oppSelection = "scissors"
+    } else if (oppSelection >= 20) {
+        oppSelection = "lizard"
+    } else {
+        oppSelection = "spock"
+    }
+    console.log(oppSelection)
+
+</script>
+
+<body>
+
+</body>
+
+</html>
