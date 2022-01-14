@@ -10,96 +10,61 @@
 
 <body>
     <script>
-        let gamesWon = 0;
-        let gamesLost = 0;
-        let gamesPlayed = 0;
-        let win = false;
+        let wins = 0;
+        let lose = 0;
+        let tie = 0;
+        let rounds = 0;
 
-        while (win === false) {
-            let playerSelection = prompt("Please select one of the following: 'Rock', 'Paper', 'Scissors', 'Lizard', or 'Spock'");
-            if (playerSelection.toLowerCase() === "") {
-                alert("Please enter a valid selection");
-            } else if (playerSelection.toLowerCase() === "q") {
-                alert("Sorry to see you go. Refresh to play again!")
-                break;
-            }
-
-            let oppSelection = Math.floor(Math.random() * 100) + 1;
-            if (oppSelection >= 80) {
-                oppSelection = "rock";
-            } else if (oppSelection >= 60) {
-                oppSelection = "paper"
-            } else if (oppSelection >= 40) {
-                oppSelection = "scissors"
-            } else if (oppSelection >= 20) {
-                oppSelection = "lizard"
+        function playRound() {
+            playerSelection = prompt("Make a selection of: Rock, Paper, or Scissors").toLowerCase();
+            computerSelection = computerPlay();
+            if (playerSelection === computerSelection) {
+                alert(`It's a tie! 
+                You chose: ${playerSelection} 
+                Computer chose: ${computerSelection}`)
+                tie++;
+                rounds++;
+            } else if (playerSelection === "rock" && computerSelection === "scissors") {
+                alert(`You win! 
+                You chose: ${playerSelection} 
+                Computer chose: ${computerSelection}`)
+                wins++;
+                rounds++;
+            } else if (playerSelection === "paper" && computerSelection === "rock") {
+                alert(`You win! 
+                You chose: ${playerSelection} 
+                Computer chose: ${computerSelection}`)
+                wins++;
+                rounds++;
+            } else if (playerSelection === "scissors" && computerSelection === "paper") {
+                alert(`You win! 
+                You chose: ${playeSelection} 
+                Computer chose: ${computerSelection}`)
+                wins++;
+                rounds++;
             } else {
-                oppSelection = "spock"
+                alert(`You lose! 
+                You chose: ${playerSelection} 
+                Computer chose: ${computerSelection}`)
+                lose++;
+                rounds++;
             }
+        }
 
-            if (playerSelection.toLowerCase() === oppSelection) {
-                console.log(`You tied. Lets play again!`)
-                gamesPlayed++;
+        function game() {
+            for (i = 0; i < 5; i++) {
+                playRound();
             }
-
-            if (playerSelection.toLowerCase() === "rock" && oppSelection === ("scissors" || "lizard")) {
-                console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
-                gamesWon++;
-                gamesPlayed++;
-            } else if (playerSelection.toLowerCase() === "rock" && oppSelection === ("paper" || "spock")) {
-                console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
-                gamesLost++;
-                gamesPlayed++;
-            }
-
-            if (playerSelection.toLowerCase() === "paper" && oppSelection === ("rock" || "spock")) {
-                console.log(`You win, ${playerSelection} beats ${oppSelection}!`)
-                gamesWon++;
-                gamesPlayed++;
-            } else if (playerSelection.toLowerCase() === "paper" && oppSelection === ("scissors" || "lizard")) {
-                console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
-                gamesLost++;
-                gamesPlayed++;
-            }
-
-            if (playerSelection.toLowerCase() === "scissors" && oppSelection === ("paper" || "lizard")) {
-                console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
-                gamesWon++;
-                gamesPlayed++;
-            } else if (playerSelection.toLowerCase() === "scissors" && oppSelection === ("rock" || "spock")) {
-                console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
-                gamesWon++;
-                gamesPlayed++;
-            }
-
-            if (playerSelection.toLowerCase() === "lizard" && oppSelection === ("paper" || "spock")) {
-                console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
-                gamesWon++;
-                gamesPlayed++;
-            } else if (playerSelection.toLowerCase() === "lizard" && oppSelection === ("scissors" || "rock")) {
-                console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
-                gamesLost++;
-                gamesPlayed++;
-            }
-
-            if (playerSelection.toLowerCase() === "spock" && oppSelection === ("scissors" || "rock")) {
-                console.log(`You win, ${playerSelection} beats ${oppSelection}!`);
-                gamesWon++;
-                gamesPlayed++;
-            } else if (playerSelection.toLowerCase() === "spock" && oppSelection === ("paper" || "lizard")) {
-                console.log(`You lose, ${oppSelection} beats ${playerSelection}!`);
-                gamesLost++;
-                gamesPlayed++;
-            }
-
-            if (gamesWon === 3) {
-                win = true;
-                console.log(`Congratulations, you won 3 games before your opponent! You played ${gamesPlayed} games total.`);
-            }
-
-            if (gamesLost === 3) {
-                win = true;
-                console.log(`Sorry, you lost 3 games before your opponent! You played ${gamesPlayed} games total.`);
+            if (rounds === 5) {
+                alert(`Congratulations, you finished a match!
+                Win: ${wins} 
+                Lose: ${lose} 
+                Tie: ${tie}`)
+                wins = 0;
+                lose = 0;
+                tie = 0;
+                rounds = 0;
+                rounds = 0;
             }
         }
 
