@@ -11,6 +11,7 @@
 <body>
     <h1>Champions League</h1>
     <h2>Rock Paper Scissors</h2>
+    <button id="reset">Reset</button>
 
     <h3>Rules:</h3>
     <ul>
@@ -25,64 +26,89 @@
         <button id="paper">Paper</button>
 
         <button id="scissors">Scissors</button>
-
     </div>
 
+
+
+
     <script>
-        const h1 = document.querySelector('h1')
-        h1.style.textAlign = "center"
+        const h1 = document.querySelector('h1');
+        h1.style.textAlign = "center";
 
-        const h2 = document.querySelector('h2')
-        h2.style.textAlign = "center"
+        const h2 = document.querySelector('h2');
+        h2.style.textAlign = "center";
 
-        const btnDiv = document.querySelector('#buttonDiv')
-        btnDiv.style.marginTop = '50px'
-        btnDiv.style.display = "flex"
-        btnDiv.style.justifyContent = "space-evenly"
+        const btnDiv = document.querySelector('#buttonDiv');
+        btnDiv.style.marginTop = '50px';
+        btnDiv.style.display = "flex";
+        btnDiv.style.justifyContent = "space-evenly";
 
         const rockBtn = document.querySelector('#rock');
 
         rockBtn.addEventListener('click', () => {
             playerSelection = 'rock';
-            playRound(playerSelection);
+            compChoice();
+            playRound(playerSelection, computerSelection);
         })
 
         const paperBtn = document.querySelector('#paper');
 
         paperBtn.addEventListener('click', () => {
             playerSelection = 'paper';
-            playRound(playerSelection);
+            compChoice();
+            playRound(playerSelection, computerSelection);
         })
 
         const scissorsBtn = document.querySelector('#scissors');
 
         scissorsBtn.addEventListener('click', () => {
             playerSelection = 'scissors';
-            playRound(playerSelection);
+            compChoice();
+            playRound(playerSelection, computerSelection);
         })
 
-        const div = document.createElement('div')
+        const resetBtn = document.querySelector('#reset');
+
+        resetBtn.addEventListener('click', () => {
+            playerWins = 0;
+            compWins = 0;
+            tie = 0;
+            match = 0;
+            playerPoint = 0;
+            computerPoint = 0;
+            rockBtn.disabled = false;
+            paperBtn.disabled = false;
+            scissorsBtn.disabled = false;
+            div.style.color = 'black';
+            div.innerText = "Please make a selection";
+            p1.innerText = `Player points: 0`;
+            p2.innerText = `Computer points: 0`;
+            div2.innerText = "";
+        });
+
+        const div = document.createElement('div');
         document.body.appendChild(div);
-        div.style.margin = '50px'
-        div.style.textAlign = 'center'
+        div.style.margin = '50px';
+        div.style.textAlign = 'center';
+        div.innerText = "Please make a selection";
 
-        const div2 = document.createElement('div')
+        const div2 = document.createElement('div');
         document.body.appendChild(div2);
-        div2.style.margin = '50px'
-        div2.style.textAlign = 'center'
+        div2.style.margin = '50px';
+        div2.style.textAlign = 'center';
 
-        const div3 = document.createElement('div')
+        const div3 = document.createElement('div');
         document.body.appendChild(div3);
-        div3.style.display = 'flex'
-        div3.style.justifyContent = 'space-evenly'
+        div3.style.display = 'flex';
+        div3.style.justifyContent = 'space-evenly';
 
-        const p1 = document.createElement('p')
+        const p1 = document.createElement('p');
         div3.appendChild(p1);
-        p1.innerText = `Player points: 0`
+        p1.innerText = `Player points: 0`;
 
-        const p2 = document.createElement('p')
+        const p2 = document.createElement('p');
         div3.appendChild(p2);
-        p2.innerText = `Computer points: 0`
+        p2.innerText = `Computer points: 0`;
 
 
         let playerWins = 0;
@@ -92,7 +118,7 @@
         let playerPoint = 0;
         let computerPoint = 0;
 
-        function playRound(playerSelection, computerSelection) {
+        function compChoice() {
             computerSelection = Math.floor(Math.random() * 100) + 1;
             if (computerSelection >= 66) {
                 computerSelection = 'rock'
@@ -101,75 +127,80 @@
             } else {
                 computerSelection = 'scissors'
             }
-            return result;
+            return computerSelection;
         }
 
-        if (playerSelection === computerSelection) {
-            div.innerText = `It's a tie! 
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === computerSelection) {
+                div.innerText = `It's a tie! 
                 You chose: ${playerSelection} 
                 Computer chose: ${computerSelection} 
                 Try again!`
-            tie++;
-            match++;
-            div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`
-        } else if (playerSelection === "rock" && computerSelection === "scissors") {
-            div.innerText = `You win! 
+                tie++;
+                match++;
+                div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`;
+            } else if (playerSelection === "rock" && computerSelection === "scissors") {
+                div.innerText = `You win! 
                 You chose: ${playerSelection} 
                 Computer chose: ${computerSelection}`
-            playerWins++;
-            match++;
-            div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`
-        } else if (playerSelection === "paper" && computerSelection === "rock") {
-            div.innerText = `You win! 
+                playerWins++;
+                match++;
+                div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`;
+            } else if (playerSelection === "paper" && computerSelection === "rock") {
+                div.innerText = `You win! 
                 You chose: ${playerSelection} 
                 Computer chose: ${computerSelection}`
-            playerWins++;
-            match++;
-            div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`
-        } else if (playerSelection === "scissors" && computerSelection === "paper") {
-            div.innerText = `You win! 
+                playerWins++;
+                match++;
+                div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`;
+            } else if (playerSelection === "scissors" && computerSelection === "paper") {
+                div.innerText = `You win! 
                 You chose: ${playerSelection} 
                 Computer chose: ${computerSelection}`
-            playerWins++;
-            match++;
-            div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`
-        } else {
-            div.innerText = `You lose! 
+                playerWins++;
+                match++;
+                div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`;
+            } else {
+                div.innerText = `You lose! 
                 You chose: ${playerSelection} 
                 Computer chose: ${computerSelection}`
-            compWins++
-            match++;
-            div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`
+                compWins++;
+                match++;
+                div2.innerText = `${playerWins}: wins, ${compWins}: lost, ${tie}: ties`;
+            }
+
+            if (playerWins === 5) {
+                div.innerText = `That completes this round. Player is awarded 1 point`;
+                playerWins = 0;
+                compWins = 0;
+                tie = 0;
+                match = 0;
+                playerPoint++;
+                p1.innerText = `Player points: ${playerPoint}`;
+            } else if (compWins === 5) {
+                div.innerHTML = `That completes this round. Computer is awarded 1 point`;
+                playerWins = 0;
+                compWins = 0;
+                tie = 0;
+                match = 0;
+                computerPoint++;
+                p2.innerText = `Computer points: ${computerPoint}`;
+            }
+
+            if (playerPoint === 3) {
+                div.innerText = `CONGRATULATIONS! YOU ARE THE CHAMP!`;
+                div.style.color = "green";
+                rockBtn.disabled = true;
+                paperBtn.disabled = true;
+                scissorsBtn.disabled = true;
+            } else if (computerPoint === 3) {
+                div.innerText = `SORRY, YOU LOST THE CHAMPIONSHIP. BETTER LUCK NEXT YEAR`;
+                div.style.color = "red";
+                rockBtn.disabled = true;
+                paperBtn.disabled = true;
+                scissorsBtn.disabled = true;
+            }
         }
-
-        if (playerWins === 5) {
-            div.innerText = `That completes this round. Player is awarded 1 point`;
-            playerWins = 0;
-            compWins = 0;
-            tie = 0;
-            match = 0;
-            playerPoint++;
-            p1.innerText = `Player points: ${playerPoint}`
-        } else if (compWins === 5) {
-            div.innerHTML = `That completes this round. Computer is awarded 1 point`;
-            playerWins = 0;
-            compWins = 0;
-            tie = 0;
-            match = 0;
-            computerPoint++;
-            p2.innerText = `Computer points: ${computerPoint}`
-        }
-
-        if (playerPoint === 3) {
-            div.innerText = `CONGRATULATIONS! YOU ARE THE CHAMP!`
-        } else if (computerPoint === 3) {
-            div.innerText = `SORRY, YOU LOST THE CHAMPIONSHIP. BETTER LUCK NEXT YEAR`
-        }
-
-
-
-
-
     </script>
 </body>
 
